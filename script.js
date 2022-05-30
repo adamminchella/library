@@ -35,10 +35,27 @@ function displayNewBook(book) {
   const tableRow = document.createElement("tr");
   for (let key in book) {
     const tableCell = document.createElement("td");
-    tableCell.textContent = book[key];
+    if (key == "read") {
+      if (hasBeenRead.checked) {
+        tableCell.textContent = "Yes";
+      } else {
+        tableCell.textContent = "No";
+      }
+    } else {
+      tableCell.textContent = book[key];
+    }
     tableRow.appendChild(tableCell);
   }
+  addRemoveButton(tableRow);
   tableBody.appendChild(tableRow);
+}
+
+function addRemoveButton(tableRow) {
+  const newTD = document.createElement("td");
+  const removeButton = document.createElement("button");
+  removeButton.textContent = "Remove";
+  newTD.appendChild(removeButton);
+  tableRow.appendChild(newTD);
 }
 
 addBookButton.addEventListener("click", displayForm);
@@ -47,6 +64,7 @@ sumbitButton.addEventListener("click", () => {
   const newBook = addBookToLibrary();
   displayNewBook(newBook);
   resetForm();
+  console.log(myLibrary);
 });
 
 function displayForm() {
@@ -54,9 +72,9 @@ function displayForm() {
 }
 
 function resetForm() {
-  title.value = "";
-  author.value = "";
-  numberOfPages.value = "";
-  hasBeenRead.checked = false;
+  //   title.value = "";
+  //   author.value = "";
+  //   numberOfPages.value = "";
+  //   hasBeenRead.checked = false;
   form.style.display = "none";
 }
