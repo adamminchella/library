@@ -58,8 +58,6 @@ function addRemoveButton(tableRow) {
   removeButton.textContent = "Remove";
   removeButton.addEventListener("click", () => {
     const removeButtons = document.querySelectorAll(".remove-button");
-    console.log(removeButtons);
-    console.log(myLibrary);
     myLibrary.splice(Array.from(removeButtons).indexOf(removeButton), 1);
     tableRow.remove();
     // setDataAttribute();
@@ -75,7 +73,6 @@ sumbitButton.addEventListener("click", () => {
   displayNewBook(newBook);
   //   setDataAttribute();
   resetForm();
-  console.log(myLibrary);
 });
 
 function displayForm() {
