@@ -33,6 +33,7 @@ function addBookToLibrary() {
 
 function displayNewBook(book) {
   const tableRow = document.createElement("tr");
+  tableRow.classList.add("data-row");
   for (let key in book) {
     const tableCell = document.createElement("td");
     if (key == "read") {
@@ -63,6 +64,7 @@ addBookButton.addEventListener("click", displayForm);
 sumbitButton.addEventListener("click", () => {
   const newBook = addBookToLibrary();
   displayNewBook(newBook);
+  setDataAttribute();
   resetForm();
   console.log(myLibrary);
 });
@@ -77,4 +79,11 @@ function resetForm() {
   //   numberOfPages.value = "";
   //   hasBeenRead.checked = false;
   form.style.display = "none";
+}
+
+function setDataAttribute() {
+  const dataRow = document.querySelectorAll(".data-row");
+  for (let i = 0; i < dataRow.length; i++) {
+    dataRow[i].dataset.index = i;
+  }
 }
