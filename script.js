@@ -52,11 +52,20 @@ function displayNewBook(book) {
 }
 
 function addRemoveButton(tableRow) {
-  const newTD = document.createElement("td");
+  const removeCell = document.createElement("td");
   const removeButton = document.createElement("button");
+  removeButton.classList.add("remove-button");
   removeButton.textContent = "Remove";
-  newTD.appendChild(removeButton);
-  tableRow.appendChild(newTD);
+  removeButton.addEventListener("click", () => {
+    const removeButtons = document.querySelectorAll(".remove-button");
+    console.log(removeButtons);
+    console.log(myLibrary);
+    myLibrary.splice(Array.from(removeButtons).indexOf(removeButton), 1);
+    tableRow.remove();
+    // setDataAttribute();
+  });
+  removeCell.appendChild(removeButton);
+  tableRow.appendChild(removeCell);
 }
 
 addBookButton.addEventListener("click", displayForm);
@@ -64,7 +73,7 @@ addBookButton.addEventListener("click", displayForm);
 sumbitButton.addEventListener("click", () => {
   const newBook = addBookToLibrary();
   displayNewBook(newBook);
-  setDataAttribute();
+  //   setDataAttribute();
   resetForm();
   console.log(myLibrary);
 });
@@ -74,16 +83,16 @@ function displayForm() {
 }
 
 function resetForm() {
-  //   title.value = "";
-  //   author.value = "";
-  //   numberOfPages.value = "";
-  //   hasBeenRead.checked = false;
+  title.value = "";
+  author.value = "";
+  numberOfPages.value = "";
+  hasBeenRead.checked = false;
   form.style.display = "none";
 }
 
-function setDataAttribute() {
-  const dataRow = document.querySelectorAll(".data-row");
-  for (let i = 0; i < dataRow.length; i++) {
-    dataRow[i].dataset.index = i;
-  }
-}
+// function setDataAttribute() {
+//   const removeButtons = document.querySelectorAll(".remove-button");
+//   for (let i = 0; i < removeButtons.length; i++) {
+//     removeButtons[i].dataset.index = i;
+//   }
+// }
