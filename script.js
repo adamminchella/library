@@ -37,6 +37,10 @@ function displayNewBook(book) {
   for (let key in book) {
     const tableCell = document.createElement("td");
     if (key == "read") {
+      tableCell.classList.add("read-cell");
+      tableCell.addEventListener("click", () => {
+        toggleRead(tableCell);
+      });
       if (hasBeenRead.checked) {
         tableCell.textContent = "Yes";
       } else {
@@ -49,6 +53,17 @@ function displayNewBook(book) {
   }
   addRemoveButton(tableRow);
   tableBody.appendChild(tableRow);
+}
+function toggleRead(tableCell) {
+  const readCells = document.querySelectorAll(".read-cell");
+  let book = myLibrary[Array.from(readCells).indexOf(tableCell)];
+  if (book.read) {
+    tableCell.textContent = "No";
+    book.read = false;
+  } else {
+    tableCell.textContent = "Yes";
+    book.read = true;
+  }
 }
 
 function addRemoveButton(tableRow) {
