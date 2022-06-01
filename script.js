@@ -72,13 +72,17 @@ function addRemoveButton(tableRow) {
   removeButton.classList.add("remove-button");
   removeButton.textContent = "Remove";
   removeButton.addEventListener("click", () => {
-    const removeButtons = document.querySelectorAll(".remove-button");
-    myLibrary.splice(Array.from(removeButtons).indexOf(removeButton), 1);
-    tableRow.remove();
-    // setDataAttribute();
+    removeBook(removeButton, tableRow);
   });
   removeCell.appendChild(removeButton);
   tableRow.appendChild(removeCell);
+}
+
+function removeBook(button, row) {
+  const removeButtons = document.querySelectorAll(".remove-button");
+  myLibrary.splice(Array.from(removeButtons).indexOf(button), 1);
+  row.remove();
+  // setDataAttribute();
 }
 
 addBookButton.addEventListener("click", displayForm);
