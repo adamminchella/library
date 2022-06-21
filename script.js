@@ -54,6 +54,7 @@ function displayNewBook(book) {
   addRemoveButton(tableRow);
   tableBody.appendChild(tableRow);
 }
+
 function toggleRead(tableCell) {
   const readCells = document.querySelectorAll(".read-cell");
   let book = myLibrary[Array.from(readCells).indexOf(tableCell)];
@@ -85,14 +86,19 @@ function removeBook(button, row) {
   // setDataAttribute();
 }
 
-addBookButton.addEventListener("click", displayForm);
-
-sumbitButton.addEventListener("click", () => {
+addBookButton.addEventListener("click", () => {
   const newBook = addBookToLibrary();
   displayNewBook(newBook);
   //   setDataAttribute();
   resetForm();
 });
+
+// sumbitButton.addEventListener("click", () => {
+//   const newBook = addBookToLibrary();
+//   displayNewBook(newBook);
+//   //   setDataAttribute();
+//   resetForm();
+// });
 
 function displayForm() {
   form.style.display = "initial";
@@ -103,7 +109,7 @@ function resetForm() {
   author.value = "";
   numberOfPages.value = "";
   hasBeenRead.checked = false;
-  form.style.display = "none";
+  //   form.style.display = "none";
 }
 
 // function setDataAttribute() {
